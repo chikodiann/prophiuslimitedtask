@@ -76,6 +76,20 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
+    public List<Notification> getNotificationsForAuthUserPaginate(String receiver, String sender, Integer page, Integer size) {
+        User authUser = userService.getAuthenticatedUser();
+
+        if (sender != null) {
+            return notificationRepository.findNotificationsByReceiverAndSenderAndIsSeenIsFalse(authUser, receiver, sender,
+                    PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "dateUpdated")));
+        } else {
+            return notificationRepository.findNotificationsByReceiverAndIsSeenIsFalse(authUser, receiver,
+                    PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "dateUpdated")));
+        }
+    }
+
+
+    @Override
     public List<Notification> getNotificationsForAuthUserPaginate(Integer page, Integer size) {
         User authUser = userService.getAuthenticatedUser();
         return notificationRepository.findNotificationsByReceiver(

@@ -16,6 +16,7 @@ public interface NotificationService {
     List<Notification> getNotificationsForAuthUserPaginate(String receiver, Integer page, Integer size);
 
     List<Notification> getNotificationsForAuthUserPaginate(Integer page, Integer size);
+    List<Notification> getNotificationsForAuthUserPaginate(String receiver, String sender, Integer page, Integer size);
 
     void markAllSeen();
     void markAllRead();

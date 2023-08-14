@@ -4,6 +4,7 @@ import com.ann.prophiuslimitedtask.entity.Comment;
 import com.ann.prophiuslimitedtask.entity.Notification;
 import com.ann.prophiuslimitedtask.entity.Post;
 import com.ann.prophiuslimitedtask.entity.User;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -17,4 +18,7 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     List<Notification> findNotificationsByReceiverAndIsReadIsFalse(User receiver);
     void deleteNotificationByOwningPost(Post owningPost);
     void deleteNotificationByOwningComment(Comment owningComment);
+    List<Notification> findNotificationsByReceiverAndSenderAndIsSeenIsFalse(User authUser, String receiver, String sender, PageRequest dateUpdated);
+
+    List<Notification> findNotificationsByReceiverAndIsSeenIsFalse(User authUser, String receiver, PageRequest dateUpdated);
 }
