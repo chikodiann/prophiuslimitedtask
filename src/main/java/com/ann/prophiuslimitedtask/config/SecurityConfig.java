@@ -15,16 +15,25 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/* This is a comprehensive security configuration class that handles authentication and
+authorization using Spring Security. It sets up rules for access to different endpoints,
+provides authentication providers, and configures filters, such as the JWT authorization filter.
+It also defines a list of white-listed URLs that don't require authentication.
+This class is crucial for securing your application's endpoints.
+ */
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig{
+    //inject required beans and components
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final CustomAccessDeniedHandler accessDeniedHandler;
     private final CustomAuthenticationEntryPoint authenticationEntryPoint;
     private final CustomUserDetailService userDetailService;
     private final CustomAuthenticationProvider authenticationProvider;
 
+    // URLs that do not require authentication
     public static final String[] WHITE_LIST_URLS = {
             "/api/v1/signup",
             "/api/v1/login",

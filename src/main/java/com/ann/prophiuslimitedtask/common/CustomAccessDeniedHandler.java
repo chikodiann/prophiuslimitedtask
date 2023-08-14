@@ -21,6 +21,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,
                        AccessDeniedException exception) throws IOException, ServletException {
+        // Create an error response with appropriate status and message
         ErrorResponse errorResponse = ErrorResponse.builder()
                 .statusCode(HttpStatus.UNAUTHORIZED.value())
                 .status(HttpStatus.UNAUTHORIZED)
@@ -28,8 +29,12 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
                 .reason(HttpStatus.UNAUTHORIZED.getReasonPhrase())
                 .timestamp(new Date())
                 .build();
+
+        // Set the response content type and status
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
+
+        // Write the error response to the output stream
         OutputStream outputStream = response.getOutputStream();
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(outputStream, errorResponse);

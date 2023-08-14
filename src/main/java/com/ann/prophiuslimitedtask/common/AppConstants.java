@@ -2,17 +2,23 @@ package com.ann.prophiuslimitedtask.common;
 
 public class AppConstants {
 
+    // Constants for various pagination settings
     public static final Integer FOLLOWER_PER_PAGE = 20;
     public static final Integer FOLLOWING_PER_PAGE = 20;
     public static final Integer POST_PER_PAGE = 20;
     public static final Integer CONTENT_PER_PAGE = 20;
-    public static final Integer MAX_POST_TAGS = 5;
+
+    // JWT Token expiration times
     public static final Long JWT_EXPIRATION_2Wk = 14 * 86400000L; // 2 Weeks
     public static final Long JWT_EXPIRATION_1d = 86400000L; // 1 Day
+
+    // JWT Token related constants
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String TOKEN_HEADER = "Jwt-Token";
     public static final String OPTIONS_HTTP_METHOD = "options";
     public static final String AUTHORITIES = "authorities";
+
+    // Various error messages and reasons
     public static final String TOKEN_UNVERIFIABLE = "Token cannot be verified.";
     public static final String INVALID_TOKEN = "Token is not valid.";
     public static final String FORBIDDEN = "You need to be logged in to access this resource.";
@@ -28,6 +34,8 @@ public class AppConstants {
     public static final String NOT_ENOUGH_PERMISSION = "You do not have enough permission to perform this action.";
     public static final String VERIFY_EMAIL = "Verify your email";
     public static final String RESET_PASSWORD = "Reset your password";
+
+    // Array of public URLs that don't require authentication
     public static final String[] PUBLIC_URLS = {
             "/api/v1/signup",
             "/api/v1/login",
@@ -52,6 +60,7 @@ public class AppConstants {
     public static final String DUPLICATE_SHARE = "You have already shared this post.";
     public static final String NOTIFICATION_NOT_FOUND = "No notification found.";
 
+    // Regular expression patterns
     public static final String EMAIL_PATTERN = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
     public static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{6,32}$";
 }

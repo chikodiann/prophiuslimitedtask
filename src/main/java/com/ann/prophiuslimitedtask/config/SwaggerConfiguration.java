@@ -20,3 +20,10 @@ import io.swagger.v3.oas.annotations.info.License;
 )
 public class SwaggerConfiguration {
 }
+
+/* This configuration class sets up Swagger documentation for the API.
+It uses annotations from the io.swagger.v3.oas.annotations package to provide metadata about the API,
+such as its title, version, contact information, and license details.
+Swagger generates API documentation based on this configuration,
+ making it easier to understand and interact with your API.
+ */

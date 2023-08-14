@@ -22,6 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+/* This class handles user-related operations, authentication, and user profile management.
+It defines endpoints for user registration, login,
+updating user information, managing followers and following relationships, retrieving user details, and more.
+ */
+
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
@@ -31,19 +36,23 @@ public class UserController {
     private final JwtTokenService jwtTokenService;
     private final AuthenticationManager authenticationManager;
 
-    @PostMapping("/signup")
+    @PostMapping("/signup") // Signup: Create a new user
     public ResponseEntity<?> signup(@RequestBody @Valid SignupDto signupDto) {
+        // Create a new user with the provided signup data
         User savedUser = userService.createNewUser(signupDto);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
-
+    // Login: Authenticate a user and return JWT token
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid LoginDto loginDto) {
+        // Authenticate the user using the authenticationManager
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getEmail(), loginDto.getPassword())
         );
+        // Retrieve the authenticated user
         User loginUser = userService.getUserByEmail(loginDto.getEmail());
         UserPrincipal userPrincipal = new UserPrincipal(loginUser);
+        // Generate a JWT token and return it in the response headers
         HttpHeaders newHttpHeaders = new HttpHeaders();
         newHttpHeaders.add(AppConstants.TOKEN_HEADER, jwtTokenService.generateToken(userPrincipal));
         return new ResponseEntity<>(loginUser, newHttpHeaders, HttpStatus.OK);

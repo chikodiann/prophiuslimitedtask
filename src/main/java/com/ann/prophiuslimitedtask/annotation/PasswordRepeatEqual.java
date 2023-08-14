@@ -13,13 +13,13 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PasswordRepeatEqualValidator.class)
 public @interface PasswordRepeatEqual {
-    String message() default "Password mismatch";
+    String message() default "Password mismatch";  // Default error message if validation fails
 
-    String passwordFieldFirst();
+    String passwordFieldFirst();  // Specifies the first password field name
 
-    String passwordFieldSecond();
+    String passwordFieldSecond();  // Specifies the second password field name
 
-    Class<?>[] groups() default {};
+    Class<?>[] groups() default {};  // Validation groups, useful for more advanced validation scenarios
 
-    Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};  // Additional data to attach to the validation result
 }

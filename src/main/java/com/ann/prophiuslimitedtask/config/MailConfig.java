@@ -27,3 +27,7 @@ public class MailConfig {
         return mailSender;
     }
 }
+/* This configuration class is responsible for configuring the JavaMailSender, which is used for sending emails.
+It sets up the properties for the SMTP server, such as the host, port, username, and password.
+These properties are necessary to establish a connection with the SMTP server and send emails.
+ */

@@ -17,6 +17,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Mapping user's role to a single authority using SimpleGrantedAuthority
         return List.<GrantedAuthority>of(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
     }
 
@@ -30,11 +31,13 @@ public class UserPrincipal implements UserDetails {
         return user.getEmail();
     }
 
+    //check if account is expired
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    //check if account is locked
     @Override
     public boolean isAccountNonLocked() {
         return true;
@@ -48,5 +51,5 @@ public class UserPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return user.getEnabled();
-    }
+    } // Return user's enabled status
 }

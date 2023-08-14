@@ -14,8 +14,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
         String uploadDir = "uploads";
         Path uploadPath = Paths.get(uploadDir);
         String uploadAbsolutePath = uploadPath.toFile().getAbsolutePath();
-
+        // Configure resource handlers for uploaded files
         registry.addResourceHandler( "/" + uploadDir + "/**")
                 .addResourceLocations("file:" + uploadAbsolutePath + "/");
     }
 }
+
+/*This configuration class is responsible for handling resource paths in the application.
+It sets up resource handlers for uploaded files, allowing them to be served directly from the file system.
+This is useful for displaying or downloading files uploaded by users.
+ */

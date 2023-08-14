@@ -20,6 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Optional;
 
+/* This class manages operations related to posts and comments.
+It provides endpoints for creating, updating, deleting posts, managing post likes, and handling comments on posts.
+ */
+
 @RestController
 @RequestMapping("/api/v1/posts")
 @RequiredArgsConstructor
@@ -28,19 +32,21 @@ public class PostController {
     private final CommentService commentService;
     private final UserService userService;
 
+    // Create a new post
     @PostMapping("/create")
     public ResponseEntity<?> createNewPost(
             @RequestParam(value = "content", required = false) Optional<String> content,
             @RequestParam(name = "postPhoto", required = false) Optional<MultipartFile> postPhoto) {
+        // Check for empty content and postPhoto
         if (content.isEmpty() && postPhoto.isEmpty()) {
             throw new EmptyPostException();
         }
-
         ObjectMapper mapper = new ObjectMapper();
 
         String contentToAdd = content.orElse(null);
         MultipartFile postPhotoToAdd = postPhoto.orElse(null);
 
+        // Create a new post with provided content and photo
         Post createdPost = postService.createNewPost(contentToAdd, postPhotoToAdd);
         return new ResponseEntity<>(createdPost, HttpStatus.CREATED);
     }

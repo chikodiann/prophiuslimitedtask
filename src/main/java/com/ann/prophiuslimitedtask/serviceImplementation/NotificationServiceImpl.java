@@ -71,6 +71,11 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
+    public List<Notification> getNotificationsForAuthUserPaginate(String receiver, Integer page, Integer size) {
+        return null;
+    }
+
+    @Override
     public List<Notification> getNotificationsForAuthUserPaginate(Integer page, Integer size) {
         User authUser = userService.getAuthenticatedUser();
         return notificationRepository.findNotificationsByReceiver(

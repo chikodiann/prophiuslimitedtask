@@ -29,6 +29,7 @@ public class CustomExceptionHandler {
     private ResponseEntity<ErrorResponse> buildErrorResponse(HttpStatus status,
                                                              String message,
                                                              Map<String, List<ValidationError>> validationErrors) {
+        // ... (exception handler implementation)
         ErrorResponse errorResponse = ErrorResponse.builder()
                 .status(status)
                 .statusCode(status.value())
@@ -42,6 +43,7 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationError(MethodArgumentNotValidException e) {
+        // ... (exception handler implementation)
         Map<String, List<ValidationError>> validationErrors = new HashMap<>();
         ResponseEntity<ErrorResponse> errorResponseResponseEntity =
                 buildErrorResponse(HttpStatus.BAD_REQUEST, "Validation Error", validationErrors);
@@ -67,6 +69,7 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleInternalServerError(Exception e) {
+        // ... (exception handler implementation)
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, AppConstants.INTERNAL_SERVER_ERROR, null);
     }
 

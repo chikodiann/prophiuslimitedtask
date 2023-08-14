@@ -14,3 +14,7 @@ public class PasswordConfig {
     }
 }
 
+/* This configuration class is used to create a PasswordEncoder bean,
+specifically the BCryptPasswordEncoder, which is used to securely encode passwords.
+It's an essential component for user authentication and registration processes.
+ */
